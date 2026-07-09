@@ -337,8 +337,10 @@
 <footer>&copy; 2026 Above All Property Solutions. Heidi Ibrahim, Licensed FL Realtor.</footer>
 
 <script>
-  // Paste your Zapier "Catch Hook" webhook URL below, replacing the placeholder.
-  const WEBHOOK_URL = "YOUR_ZAPIER_WEBHOOK_URL";
+  // HubSpot Portal ID and Form GUID (from your form's embed/share code)
+  const HUBSPOT_PORTAL_ID = "245538893";
+  const HUBSPOT_FORM_GUID = "8e9fb45c-d933-438e-9ec7-69afae0b557f";
+  const HUBSPOT_SUBMIT_URL = `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_GUID}`;
 
   const form = document.getElementById('leadForm');
   const btn = document.getElementById('submitBtn');
@@ -349,35 +351,41 @@
     statusBox.className = 'status';
     statusBox.textContent = '';
 
-    if (WEBHOOK_URL.includes("YOUR_ZAPIER_WEBHOOK_URL")) {
-      statusBox.classList.add('show', 'error');
-      statusBox.textContent = "This form isn't connected yet — add your Zapier webhook URL in the code before publishing.";
-      return;
-    }
-
-    const data = {
-      firstName: form.firstName.value,
-      lastName: form.lastName.value,
-      phone: form.phone.value,
-      email: form.email.value,
-      address: form.address.value,
-      situation: form.situation.value,
-      timeline: form.timeline.value,
-      message: form.message.value,
-      source: "Social Media Lead Form",
-      submittedAt: new Date().toISOString()
+    // Map each form field to the internal HubSpot property name.
+    // If any of these don't match your HubSpot properties exactly,
+    // update the "name" value below to match (check by clicking the
+    // field in your HubSpot form editor — it shows the internal name).
+    const payload = {
+      fields: [
+        { name: "firstname", value: form.firstName.value },
+        { name: "lastname", value: form.lastName.value },
+        { name: "phone", value: form.phone.value },
+        { name: "email", value: form.email.value },
+        { name: "address", value: form.address.value },
+        { name: "seller_situation", value: form.situation.value },
+        { name: "timeline", value: form.timeline.value },
+        { name: "lead_message", value: form.message.value }
+      ],
+      context: {
+        pageUri: window.location.href,
+        pageName: document.title
+      }
     };
 
     btn.disabled = true;
     btn.textContent = "Sending...";
 
     try {
-      await fetch(WEBHOOK_URL, {
+      const response = await fetch(HUBSPOT_SUBMIT_URL, {
         method: 'POST',
-        mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
+        body: JSON.stringify(payload)
       });
+
+      if (!response.ok) {
+        const errText = await response.text();
+        throw new Error(errText);
+      }
 
       statusBox.classList.add('show', 'success');
       statusBox.textContent = "Thanks! Your info was received — we'll be in touch within one business day.";
@@ -385,6 +393,7 @@
     } catch (err) {
       statusBox.classList.add('show', 'error');
       statusBox.textContent = "Something went wrong sending your info. Please try again or call directly.";
+      console.error("HubSpot submission error:", err);
     } finally {
       btn.disabled = false;
       btn.textContent = "Request my cash offer";
