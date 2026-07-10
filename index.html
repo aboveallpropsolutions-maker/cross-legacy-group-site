@@ -306,7 +306,18 @@
 
         <div class="field">
           <label for="address">Property address</label>
-          <input type="text" id="address" name="address" placeholder="Street, City, County" required>
+          <input type="text" id="address" name="address" placeholder="Street address" required>
+        </div>
+
+        <div class="row2">
+          <div class="field">
+            <label for="city">City</label>
+            <input type="text" id="city" name="city" required>
+          </div>
+          <div class="field">
+            <label for="state">State</label>
+            <input type="text" id="state" name="state" placeholder="FL" required>
+          </div>
         </div>
 
         <button type="button" class="submit-btn" id="toStep2Btn">See My Offer Options &rarr;</button>
@@ -386,7 +397,7 @@
 
   toStep2Btn.addEventListener('click', () => {
     // Validate step 1 fields before advancing
-    const requiredStep1 = [form.firstName, form.phone, form.address];
+    const requiredStep1 = [form.firstName, form.phone, form.address, form.city, form.state];
     for (const field of requiredStep1) {
       if (!field.value.trim()) {
         field.reportValidity();
@@ -418,6 +429,8 @@
         { name: "phone", value: form.phone.value },
         { name: "email", value: form.email.value },
         { name: "address", value: form.address.value },
+        { name: "city", value: form.city.value },
+        { name: "state", value: form.state.value },
         { name: "what_best_describes_your_situation", value: form.situation.value },
         { name: "how_soon_do_you_need_to_sell", value: form.timeline.value },
         { name: "message", value: form.message.value }
