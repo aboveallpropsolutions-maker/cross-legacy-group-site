@@ -213,6 +213,27 @@
   .status.success{background:rgba(63,122,92,0.1); color:var(--success); border:1px solid rgba(63,122,92,0.3);}
   .status.error{background:rgba(180,71,44,0.1); color:var(--error); border:1px solid rgba(180,71,44,0.3);}
 
+  .step-indicator{
+    font-size:0.72rem;
+    font-weight:700;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+  .back-btn{
+    width:100%;
+    padding:10px;
+    margin-top:8px;
+    background:none;
+    border:none;
+    color:#6b6f73;
+    font-family:'Inter', sans-serif;
+    font-size:0.85rem;
+    cursor:pointer;
+    text-align:center;
+  }
+  .back-btn:hover{color:var(--ink);}
+
   footer{
     text-align:center;
     padding:24px;
@@ -237,7 +258,7 @@
 
   <div class="hero-content">
     <div class="eyebrow">Veteran-Owned &middot; Licensed Florida Realtor</div>
-    <h1>A fair offer, <em>not a lowball</em> &mdash; even when time is tight.</h1>
+    <h1>What's your house really worth? <em>Find out free.</em></h1>
     <p>Behind on payments, handling probate, or owe more than the house is worth? We move fast and offer real market value &mdash; backed by MLS data and underwriting, not a guessing game. No repairs, no showings, no commissions.</p>
 
     <div class="credentials">
@@ -267,69 +288,85 @@
     <p class="sub">No lowball games &mdash; we base offers on real market value. Fill this out and we'll reach out within one business day.</p>
 
     <form id="leadForm">
-      <div class="row2">
+      <!-- STEP 1: low-friction hook -->
+      <div class="form-step" id="step1">
+        <div class="step-indicator">Step 1 of 2 &mdash; takes 20 seconds</div>
+        <h2 style="margin-top:10px;">See what your house is worth</h2>
+        <p class="sub">No commitment. Just tell us where the property is and how to reach you.</p>
+
         <div class="field">
           <label for="firstName">First name</label>
           <input type="text" id="firstName" name="firstName" required>
         </div>
-        <div class="field">
-          <label for="lastName">Last name</label>
-          <input type="text" id="lastName" name="lastName" required>
-        </div>
-      </div>
 
-      <div class="row2">
         <div class="field">
           <label for="phone">Phone</label>
           <input type="tel" id="phone" name="phone" required>
         </div>
+
         <div class="field">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required>
+          <label for="address">Property address</label>
+          <input type="text" id="address" name="address" placeholder="Street, City, County" required>
         </div>
+
+        <button type="button" class="submit-btn" id="toStep2Btn">See My Offer Options &rarr;</button>
+        <p class="note">Takes 20 seconds. No obligation, no lowball offers &mdash; ever.</p>
       </div>
 
-      <div class="field">
-        <label for="address">Property address</label>
-        <input type="text" id="address" name="address" placeholder="Street, City, County" required>
-      </div>
+      <!-- STEP 2: revealed after step 1 -->
+      <div class="form-step" id="step2" style="display:none;">
+        <div class="step-indicator">Step 2 of 2 &mdash; almost done</div>
+        <h2 style="margin-top:10px;">Just a few more details</h2>
+        <p class="sub">This helps us prepare a fair, accurate offer for your specific situation.</p>
 
-      <div class="field">
-        <label for="situation">What best describes your situation?</label>
-        <select id="situation" name="situation" required>
-          <option value="" disabled selected>Select one</option>
-          <option>Behind on mortgage payments / facing foreclosure</option>
-          <option>In probate / handling an inherited estate</option>
-          <option>Underwater (owe more than the home is worth)</option>
-          <option>Facing financial hardship</option>
-          <option>Tired landlord / bad tenants</option>
-          <option>Relocating / need to sell fast</option>
-          <option>Property needs repairs I can't afford</option>
-          <option>Divorce or life transition</option>
-          <option>Just exploring my options</option>
-          <option>Other</option>
-        </select>
-      </div>
+        <div class="row2">
+          <div class="field">
+            <label for="lastName">Last name</label>
+            <input type="text" id="lastName" name="lastName" required>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+        </div>
 
-      <div class="field">
-        <label for="timeline">How soon do you need to sell?</label>
-        <select id="timeline" name="timeline" required>
-          <option value="" disabled selected>Select one</option>
-          <option>As soon as possible</option>
-          <option>Within 30 days</option>
-          <option>1&ndash;3 months</option>
-          <option>3+ months / just researching</option>
-        </select>
-      </div>
+        <div class="field">
+          <label for="situation">What best describes your situation?</label>
+          <select id="situation" name="situation" required>
+            <option value="" disabled selected>Select one</option>
+            <option>Behind on Payments and worried about foreclosure</option>
+            <option>Inherited a property I'm not sure what to with</option>
+            <option>Owe more than the house is worth</option>
+            <option>Dealing with a tough financial stretch</option>
+            <option>Done Being a landlord - tenant headaches</option>
+            <option>Relocating - need to sell fast</option>
+            <option>House needs work I cannot afford to do</option>
+            <option>Just curious what it's worth</option>
+            <option>Something else entirely</option>
+          </select>
+        </div>
 
-      <div class="field">
-        <label for="message">Anything else we should know? (optional)</label>
-        <textarea id="message" name="message" placeholder="Repairs needed, liens, tenant situation, etc."></textarea>
-      </div>
+        <div class="field">
+          <label for="timeline">How soon do you need to sell?</label>
+          <select id="timeline" name="timeline" required>
+            <option value="" disabled selected>Select one</option>
+            <option>Yesterday, if I could!</option>
+            <option>Within the next 30 days</option>
+            <option>Sometime in the next 1-3 months</option>
+            <option>No rush-exploring my options</option>
+          </select>
+        </div>
 
-      <button type="submit" class="submit-btn" id="submitBtn">Request my cash offer</button>
-      <div class="status" id="statusBox"></div>
-      <p class="note">Your information goes directly to Heidi's team and stays private. No spam, no obligation, and no lowball offers &mdash; ever.</p>
+        <div class="field">
+          <label for="message">Anything else we should know? (optional)</label>
+          <textarea id="message" name="message" placeholder="Repairs needed, liens, tenant situation, etc."></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submitBtn">Get My Fair Cash Offer</button>
+        <button type="button" class="back-btn" id="backBtn">&larr; Back</button>
+        <div class="status" id="statusBox"></div>
+        <p class="note">Your information goes directly to Heidi's team and stays private. No spam, no obligation, and no lowball offers &mdash; ever.</p>
+      </div>
     </form>
   </div>
 </div>
@@ -339,8 +376,31 @@
 <script>
   // HubSpot Portal ID and Form GUID (from your form's embed/share code)
   const HUBSPOT_PORTAL_ID = "245538893";
-  const HUBSPOT_FORM_GUID = "8e9fb45c-d933-438e-9ec7-69afae0b557f";
-  const HUBSPOT_SUBMIT_URL = `https://api-na2.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_GUID}`;
+  const HUBSPOT_FORM_GUID = "14cbf342-38eb-4c65-9fe8-f268380ca1ad";
+  const HUBSPOT_SUBMIT_URL = `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_GUID}`;
+
+  const step1 = document.getElementById('step1');
+  const step2 = document.getElementById('step2');
+  const toStep2Btn = document.getElementById('toStep2Btn');
+  const backBtn = document.getElementById('backBtn');
+
+  toStep2Btn.addEventListener('click', () => {
+    // Validate step 1 fields before advancing
+    const requiredStep1 = [form.firstName, form.phone, form.address];
+    for (const field of requiredStep1) {
+      if (!field.value.trim()) {
+        field.reportValidity();
+        return;
+      }
+    }
+    step1.style.display = 'none';
+    step2.style.display = 'block';
+  });
+
+  backBtn.addEventListener('click', () => {
+    step2.style.display = 'none';
+    step1.style.display = 'block';
+  });
 
   const form = document.getElementById('leadForm');
   const btn = document.getElementById('submitBtn');
@@ -351,10 +411,6 @@
     statusBox.className = 'status';
     statusBox.textContent = '';
 
-    // Map each form field to the internal HubSpot property name.
-    // If any of these don't match your HubSpot properties exactly,
-    // update the "name" value below to match (check by clicking the
-    // field in your HubSpot form editor — it shows the internal name).
     const payload = {
       fields: [
         { name: "firstname", value: form.firstName.value },
@@ -362,9 +418,9 @@
         { name: "phone", value: form.phone.value },
         { name: "email", value: form.email.value },
         { name: "address", value: form.address.value },
-        { name: "seller_situation", value: form.situation.value },
-        { name: "timeline", value: form.timeline.value },
-        { name: "lead_message", value: form.message.value }
+        { name: "what_best_describes_your_situation", value: form.situation.value },
+        { name: "how_soon_do_you_need_to_sell", value: form.timeline.value },
+        { name: "message", value: form.message.value }
       ],
       context: {
         pageUri: window.location.href,
