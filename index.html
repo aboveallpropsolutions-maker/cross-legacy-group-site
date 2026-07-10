@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Above All Property Solutions | Get Your Cash Offer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0F2438;
+    --ink-2:#16324D;
+    --brass:#C08A4E;
+    --brass-light:#E4B276;
+    --parchment:#F7F3EC;
+    --charcoal:#2A2E33;
+    --line: rgba(247,243,236,0.14);
+    --success:#3F7A5C;
+    --error:#B4472C;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter', sans-serif;
+    color:var(--charcoal);
+    background:var(--parchment);
+    line-height:1.5;
+  }
+  h1,h2,h3{
+    font-family:'Source Serif 4', serif;
+    font-weight:700;
+    letter-spacing:-0.01em;
+  }
+
+  /* ---- HERO ---- */
+  .hero{
+    background: linear-gradient(160deg, var(--ink) 0%, var(--ink-2) 100%);
+    color:var(--parchment);
+    padding: 56px 24px 72px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    right:-60px; top:-60px;
+    width:280px; height:280px;
+    border-radius:50%;
+    background: radial-gradient(circle, rgba(192,138,78,0.18) 0%, rgba(192,138,78,0) 70%);
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:40px;
+    position:relative;
+    z-index:1;
+  }
+  .emblem{
+    width:40px; height:40px;
+    flex-shrink:0;
+  }
+  .brand-name{
+    font-family:'Source Serif 4', serif;
+    font-size:1.1rem;
+    font-weight:600;
+    letter-spacing:0.02em;
+  }
+  .brand-sub{
+    font-size:0.7rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--brass-light);
+    opacity:0.9;
+  }
+  .hero-content{position:relative; z-index:1; max-width:520px;}
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:0.72rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--brass-light);
+    border:1px solid var(--line);
+    padding:6px 14px;
+    border-radius:100px;
+    margin-bottom:22px;
+  }
+  .hero h1{
+    font-size:2.15rem;
+    line-height:1.15;
+    margin-bottom:16px;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--brass-light);
+  }
+  .hero p{
+    font-size:1rem;
+    color:rgba(247,243,236,0.82);
+    max-width:440px;
+    margin-bottom:28px;
+  }
+  .credentials{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px 22px;
+    padding-top:20px;
+    border-top:1px solid var(--line);
+  }
+  .credential{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:0.8rem;
+    color:rgba(247,243,236,0.75);
+  }
+  .credential svg{flex-shrink:0;}
+
+  /* ---- FORM SECTION ---- */
+  .form-wrap{
+    max-width:560px;
+    margin:-40px auto 0;
+    padding:0 20px 60px;
+    position:relative;
+    z-index:2;
+  }
+  .card{
+    background:#fff;
+    border-radius:4px;
+    box-shadow: 0 20px 50px -20px rgba(15,36,56,0.35);
+    padding:36px 28px;
+    border-top:3px solid var(--brass);
+  }
+  .card h2{
+    font-size:1.3rem;
+    margin-bottom:6px;
+    color:var(--ink);
+  }
+  .card .sub{
+    font-size:0.88rem;
+    color:#6b6f73;
+    margin-bottom:26px;
+  }
+  .field{margin-bottom:18px;}
+  .field label{
+    display:block;
+    font-size:0.78rem;
+    font-weight:600;
+    letter-spacing:0.03em;
+    text-transform:uppercase;
+    color:var(--ink);
+    margin-bottom:6px;
+  }
+  .field input, .field select, .field textarea{
+    width:100%;
+    padding:11px 13px;
+    font-family:'Inter', sans-serif;
+    font-size:0.95rem;
+    border:1.5px solid #DDD6C9;
+    border-radius:3px;
+    background:#FDFCF9;
+    color:var(--charcoal);
+  }
+  .field input:focus, .field select:focus, .field textarea:focus{
+    outline:none;
+    border-color:var(--brass);
+    box-shadow: 0 0 0 3px rgba(192,138,78,0.15);
+  }
+  .row2{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+  }
+  @media (max-width:480px){
+    .row2{grid-template-columns:1fr;}
+    .hero h1{font-size:1.7rem;}
+  }
+  textarea{resize:vertical; min-height:80px;}
+  .submit-btn{
+    width:100%;
+    padding:14px;
+    margin-top:8px;
+    background:var(--ink);
+    color:var(--parchment);
+    border:none;
+    border-radius:3px;
+    font-family:'Inter', sans-serif;
+    font-weight:600;
+    font-size:0.95rem;
+    letter-spacing:0.02em;
+    cursor:pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+  }
+  .submit-btn:hover{background:var(--ink-2);}
+  .submit-btn:active{transform:scale(0.99);}
+  .submit-btn:disabled{opacity:0.6; cursor:not-allowed;}
+  .note{
+    font-size:0.75rem;
+    color:#8a8e91;
+    text-align:center;
+    margin-top:14px;
+  }
+  .status{
+    margin-top:16px;
+    padding:12px 14px;
+    border-radius:3px;
+    font-size:0.88rem;
+    display:none;
+  }
+  .status.show{display:block;}
+  .status.success{background:rgba(63,122,92,0.1); color:var(--success); border:1px solid rgba(63,122,92,0.3);}
+  .status.error{background:rgba(180,71,44,0.1); color:var(--error); border:1px solid rgba(180,71,44,0.3);}
+
+  footer{
+    text-align:center;
+    padding:24px;
+    font-size:0.75rem;
+    color:#9a9d9f;
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="brand">
+    <svg class="emblem" viewBox="0 0 40 40" fill="none">
+      <path d="M20 3 L36 15 V36 H4 V15 Z" stroke="#C08A4E" stroke-width="1.6" fill="none"/>
+      <path d="M20 14 V31 M14.5 19.5 H25.5" stroke="#F7F3EC" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    <div>
+      <div class="brand-name">Above All Property Solutions</div>
+      <div class="brand-sub">Hernando &middot; Pasco &middot; Pinellas</div>
+    </div>
+  </div>
+
+  <div class="hero-content">
+    <div class="eyebrow">Veteran-Owned &middot; Licensed Florida Realtor</div>
+    <h1>A fair offer, <em>not a lowball</em> &mdash; even when time is tight.</h1>
+    <p>Behind on payments, handling probate, or owe more than the house is worth? We move fast and offer real market value &mdash; backed by MLS data and underwriting, not a guessing game. No repairs, no showings, no commissions.</p>
+
+    <div class="credentials">
+      <div class="credential">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 2L4 6v6c0 5 3.5 9 8 10 4.5-1 8-5 8-10V6l-8-4z" stroke="#C08A4E" stroke-width="1.6"/></svg>
+        U.S. Army Veteran
+      </div>
+      <div class="credential">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6" stroke="#C08A4E" stroke-width="1.6"/></svg>
+        Licensed Realtor / MLS
+      </div>
+      <div class="credential">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" stroke="#C08A4E" stroke-width="1.6"/></svg>
+        SBA Underwriting Background
+      </div>
+      <div class="credential">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#C08A4E" stroke-width="1.8"/></svg>
+        Offers Based on Market Value
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="form-wrap">
+  <div class="card">
+    <h2>Get your fair offer</h2>
+    <p class="sub">No lowball games &mdash; we base offers on real market value. Fill this out and we'll reach out within one business day.</p>
+
+    <form id="leadForm">
+      <div class="row2">
+        <div class="field">
+          <label for="firstName">First name</label>
+          <input type="text" id="firstName" name="firstName" required>
+        </div>
+        <div class="field">
+          <label for="lastName">Last name</label>
+          <input type="text" id="lastName" name="lastName" required>
+        </div>
+      </div>
+
+      <div class="row2">
+        <div class="field">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="phone" required>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="address">Property address</label>
+        <input type="text" id="address" name="address" placeholder="Street, City, County" required>
+      </div>
+
+      <div class="field">
+        <label for="situation">What best describes your situation?</label>
+        <select id="situation" name="situation" required>
+          <option value="" disabled selected>Select one</option>
+          <option>Behind on mortgage payments / facing foreclosure</option>
+          <option>In probate / handling an inherited estate</option>
+          <option>Underwater (owe more than the home is worth)</option>
+          <option>Facing financial hardship</option>
+          <option>Tired landlord / bad tenants</option>
+          <option>Relocating / need to sell fast</option>
+          <option>Property needs repairs I can't afford</option>
+          <option>Divorce or life transition</option>
+          <option>Just exploring my options</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="timeline">How soon do you need to sell?</label>
+        <select id="timeline" name="timeline" required>
+          <option value="" disabled selected>Select one</option>
+          <option>As soon as possible</option>
+          <option>Within 30 days</option>
+          <option>1&ndash;3 months</option>
+          <option>3+ months / just researching</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="message">Anything else we should know? (optional)</label>
+        <textarea id="message" name="message" placeholder="Repairs needed, liens, tenant situation, etc."></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn" id="submitBtn">Request my cash offer</button>
+      <div class="status" id="statusBox"></div>
+      <p class="note">Your information goes directly to Heidi's team and stays private. No spam, no obligation, and no lowball offers &mdash; ever.</p>
+    </form>
+  </div>
+</div>
+
+<footer>&copy; 2026 Above All Property Solutions. Heidi Ibrahim, Licensed FL Realtor.</footer>
+
+<script>
+  // HubSpot Portal ID and Form GUID (from your form's embed/share code)
+  const HUBSPOT_PORTAL_ID = "245538893";
+  const HUBSPOT_FORM_GUID = "8e9fb45c-d933-438e-9ec7-69afae0b557f";
+  const HUBSPOT_SUBMIT_URL = `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_GUID}`;
+
+  const form = document.getElementById('leadForm');
+  const btn = document.getElementById('submitBtn');
+  const statusBox = document.getElementById('statusBox');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    statusBox.className = 'status';
+    statusBox.textContent = '';
+
+    // Map each form field to the internal HubSpot property name.
+    // If any of these don't match your HubSpot properties exactly,
+    // update the "name" value below to match (check by clicking the
+    // field in your HubSpot form editor — it shows the internal name).
+    const payload = {
+      fields: [
+        { name: "firstname", value: form.firstName.value },
+        { name: "lastname", value: form.lastName.value },
+        { name: "phone", value: form.phone.value },
+        { name: "email", value: form.email.value },
+        { name: "address", value: form.address.value },
+        { name: "seller_situation", value: form.situation.value },
+        { name: "timeline", value: form.timeline.value },
+        { name: "lead_message", value: form.message.value }
+      ],
+      context: {
+        pageUri: window.location.href,
+        pageName: document.title
+      }
+    };
+
+    btn.disabled = true;
+    btn.textContent = "Sending...";
+
+    try {
+      const response = await fetch(HUBSPOT_SUBMIT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        const errText = await response.text();
+        throw new Error(errText);
+      }
+
+      statusBox.classList.add('show', 'success');
+      statusBox.textContent = "Thanks! Your info was received — we'll be in touch within one business day.";
+      form.reset();
+    } catch (err) {
+      statusBox.classList.add('show', 'error');
+      statusBox.textContent = "Debug info (temporary): " + err.message;
+      console.error("HubSpot submission error:", err);
+    } finally {
+      btn.disabled = false;
+      btn.textContent = "Request my cash offer";
+    }
+  });
+</script>
+
+</body>
+</html>
